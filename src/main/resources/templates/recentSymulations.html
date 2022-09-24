@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cruise app</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <div th:replace="../static/topnav :: navbar">
+    </div>
+        <div class="inBody">
+            <div class="contentoftable">
+                <table class="cruiselist">
+                    <thead>
+
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td> Name of symulation </td>
+                        <td> size </td>
+                        <td> start </td>
+                        <td> indicator </td>
+                        <td> death ratio </td>
+                        <td> recover index </td>
+                        <td> death index </td>
+                        <td> days index </td>
+                        <td></td>
+                    </tr>
+                    <tr th:each="list : ${list}">
+                        <form method="post" th:action="@{/chooseSymulation}" th:object="${dto}" name="formOrder" modelAttribute="cruise">
+                            <td><span th:text="${list.nameN}" > Name of symulation </span></td>
+                            <td><span th:text="${list.sizeP}" > size </span></td>
+                            <td><span th:text="${list.startI}"> start </span></td>
+                            <td><span th:text="${list.indicatorR}"> indicator </span></td>
+                            <td><span th:text="${list.deathratioM}"> death ratio </span></td>
+                            <td><span th:text="${list.recoveryindexTi}"> recover index </span></td>
+                            <td><span th:text="${list.deathindexTm}"> death index </span></td>
+                            <td><span th:text="${list.daysindexTs}"> days index </span></td>
+                            <td style="visibility: hidden"><input  type="hidden" th:value="${list.idsymulations}" th:attr="name = 'idsymulations'"></td>
+                            <td><input type="submit" value="send"></td>
+                        </form>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+    </div>
+</div>
+</body>
+</html>

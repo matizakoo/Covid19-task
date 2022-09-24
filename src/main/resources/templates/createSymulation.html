@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cruise app</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <div th:replace="../static/topnav :: navbar">
+    </div>
+    <div class="body">`
+        <div class="inBody">
+            <form method="post" th:action="@{/createSymulation}" th:object="${symulationsDTO}" name="chuj">
+                <div class="inputValues">
+                    name_n
+                </div>
+                <input type="text" th:attr="name = 'nameN'">
+<!--                <div th:if="${#fields.hasErrors('login')}" th:errors="*{login}" class="invalidFeedback" th:name="errorWithLogin1"></div>-->
+
+                <div class="inputValues">
+                    size_p
+                </div>
+                <input type="text" th:attr="name = 'sizeP'">
+
+                <div class="inputValues">
+                    start_i
+                </div>
+                <input type="text" th:attr="name = 'startI'">
+
+                <div class="inputValues">
+                    indicator_r
+                </div>
+                <input type="text" th:attr="name = 'indicatorR'">
+
+                <div class="inputValues">
+                    deathratio_m
+                </div>
+                <input type="text" th:attr="name = 'deathratioM'">
+
+                <div class="inputValues">
+                    recoverindex_ti
+                </div>
+                <input type="text" th:attr="name = 'recoverindexTi'">
+
+                <div class="inputValues">
+                    deathindex_tm
+                </div>
+                <input type="text" th:attr="name = 'deathindexTm'">
+
+                <div class="inputValues">
+                    daysindex_ts
+                </div>
+                <input type="text" th:attr="name = 'daysindexTs'">
+                <input type="submit" value="add a symulation">
+            </form>
+        </div>
+    </div>
+
+    <div class="footer">
+
+    </div>
+</div>
+</body>
+</html>

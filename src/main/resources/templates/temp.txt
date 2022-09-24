@@ -1,0 +1,40 @@
+<div class="inBody">
+            <div class="contentoftable">
+                <table class="cruiselist">
+                    <thead>
+
+                    </thead>
+                    <tbody>
+                    <tr th:if="${cruises.empty}">
+                        <td colspan="2"> No cruise avaliable :( </td>
+                    </tr>
+                    <tr>
+                        <td> Name of symulation </td>
+                        <td> size </td>
+                        <td> start </td>
+                        <td> indicator </td>
+                        <td> death ratio </td>
+                        <td> recover index </td>
+                        <td> death index </td>
+                        <td> days index </td>
+                    </tr>
+                    <tr th:each="list : ${list}">
+                        <form method="post" th:action="@{/chooseSymulation}" th:object="${dto}" name="formOrder" modelAttribute="cruise">
+                            <td><span th:text="${list.nameN}" > Name of symulation </span></td>
+                            <td><span th:text="${list.sizeP}" > size </span></td>
+                            <td><span th:text="${list.startI}"> start </span></td>
+                            <td><span th:text="${list.indicatorR}"> indicator </span></td>
+                            <td><span th:text="${list.deathratioM}"> death ratio </span></td>
+                            <td><span th:text="${list.recoverindexTi}"> recover index </span></td>
+                            <td><span th:text="${list.deathindexTm}"> death index </span></td>
+                            <td><span th:text="${list.daysindexTs}"> days index </span></td>
+<!--                            <td><input th:if="${orders.status.id == 1}" type="submit" value="confirm trip" style="width: auto"></td>-->
+<!--                            <td style="visibility: hidden"><input  type="hidden" th:value="${orders.id}" th:attr="name = 'orderid'"></td>-->
+
+                            <!--                            <td><input  type="hidden" th:value="${cruise.id}" th:attr="name = 'cruiseid'"></td>-->
+                        </form>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>

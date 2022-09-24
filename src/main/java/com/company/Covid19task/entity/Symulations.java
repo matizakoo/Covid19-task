@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Getter
 public class Symulations {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "idsymulations")
     private int idsymulations;
 
