@@ -25,7 +25,7 @@ public class RecentSymulationsController {
     @PostMapping("/chooseSymulation")
     public String chosenSymulation(@RequestParam(name = "idsymulations") int idsymulation, Model model){
         logger.info("choosen symulation");
-        model.addAttribute("list", symulationService.findAllPopulation(symulationService.findSymulation(idsymulation)));
+        model.addAttribute("list", symulationService.findAllPopulations(symulationService.findSymulation(idsymulation)));
         return "symulation";
     }
 }

@@ -23,6 +23,7 @@ public class SymulationService {
     @Autowired
     private PopulationService populationService;
     private final Random random = new Random();
+    int infected,hunprotected,hprotected,deaths;
 
     Logger logger = LoggerFactory.getLogger(SymulationService.class);
     private Symulations symulations;
@@ -43,7 +44,7 @@ public class SymulationService {
         populationRepository.save(population);
     }
 
-    public Symulations createSymulation(SymulationsDTO dto){
+    public Symulations dtoToEntity(SymulationsDTO dto){
         symulations = new Symulations(
                 dto.getNameN(),
                 dto.getSizeP(),
@@ -63,7 +64,7 @@ public class SymulationService {
     }
 
     @Transactional
-    public ArrayList<Population> findAllPopulation(Symulations symulations){
+    public ArrayList<Population> findAllPopulations(Symulations symulations){
         return (ArrayList<Population>) populationRepository.findBySymulationsIdSymulations(symulations);
     }
 
@@ -93,7 +94,7 @@ public class SymulationService {
                         0,0,0));
             }
         }
-        int i =0;
+        int i = 1;
         for(Population e: populations){
             System.out.println(i++ +". " + "Infected: " + e.getInfectedPi() + ", unprotected: " + e.getHealthyunprotectedPv() +
                     ", deaths: " + e.getDeathsPm() + ", protected: " + e.getHealthyprotectedPr());
@@ -108,7 +109,6 @@ public class SymulationService {
     }
 
     private Population updaterLessThanTs(ArrayList<Population> populations, Symulations symulations, int i){
-        int infected,hunprotected,hprotected;
         hunprotected = (int) (populations.get(i).getInfectedPi() * 0.3);
         hprotected = (int) (populations.get(i).getInfectedPi() * 0.7);
         infected = infection(populations.get(i)) - hunprotected - hprotected;
@@ -117,7 +117,6 @@ public class SymulationService {
     }
 
     private Population updaterMoreThanTs(ArrayList<Population> populations, Symulations symulations, int i, int n){
-        int infected,hunprotected,hprotected,deaths;
         hunprotected = (int) (populations.get(i-symulations.getRecoveryindexTi()).getInfectedPi() * 0.3);
         hprotected = (int) (populations.get(i-symulations.getRecoveryindexTi()).getInfectedPi() * 0.7);
         deaths = (int) (populations.get(i-symulations.getDeathratioM()).getInfectedPi() * 0.1);

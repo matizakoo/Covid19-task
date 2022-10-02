@@ -8,13 +8,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.transaction.Transactional;
-import javax.validation.Valid;
 
 @Controller
 @Transactional
@@ -41,7 +38,7 @@ public class SymulationController {
                                    @RequestParam(name = "daysindexTs") int daysindexTs){
         logger.info("create symulation");
         SymulationsDTO symulationsDTO = symulationsDTOService.createDTO(nameN,sizeP,startI,indicatorR,deathratioM,recoverindexTi,deathindexTm,daysindexTs);
-        Symulations symulations = symulationService.createSymulation(symulationsDTO);
+        Symulations symulations = symulationService.dtoToEntity(symulationsDTO);
         symulationService.createSimulation(symulations.getIdsymulations());
         return "redirect:/showRecentSymulations";
     }
