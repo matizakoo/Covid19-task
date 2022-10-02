@@ -1,9 +1,12 @@
 package com.company.Covid19task.entity;
 
+import lombok.Getter;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "population")
+@Getter
 public class Population {
 
     @Id

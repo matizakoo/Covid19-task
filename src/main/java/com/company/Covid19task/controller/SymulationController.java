@@ -1,6 +1,7 @@
 package com.company.Covid19task.controller;
 
 import com.company.Covid19task.dto.SymulationsDTO;
+import com.company.Covid19task.entity.Symulations;
 import com.company.Covid19task.service.SymulationService;
 import com.company.Covid19task.service.SymulationsDTOService;
 import org.slf4j.Logger;
@@ -40,7 +41,8 @@ public class SymulationController {
                                    @RequestParam(name = "daysindexTs") int daysindexTs){
         logger.info("create symulation");
         SymulationsDTO symulationsDTO = symulationsDTOService.createDTO(nameN,sizeP,startI,indicatorR,deathratioM,recoverindexTi,deathindexTm,daysindexTs);
-        symulationService.createSymulation(symulationsDTO);
+        Symulations symulations = symulationService.createSymulation(symulationsDTO);
+        symulationService.createSimulation(symulations.getIdsymulations());
         return "redirect:/showRecentSymulations";
     }
 }

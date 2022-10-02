@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.transaction.Transactional;
-
 @Controller
 public class RecentSymulationsController {
     @Autowired
@@ -25,9 +23,9 @@ public class RecentSymulationsController {
     }
 
     @PostMapping("/chooseSymulation")
-    public String chosenSymulation(@RequestParam(name = "idsymulations") int idsymulation){
+    public String chosenSymulation(@RequestParam(name = "idsymulations") int idsymulation, Model model){
         logger.info("choosen symulation");
-        symulationService.checkSymulation(idsymulation);
+        model.addAttribute("list", symulationService.findAllPopulation(symulationService.findSymulation(idsymulation)));
         return "symulation";
     }
 }

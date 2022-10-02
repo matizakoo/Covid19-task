@@ -1,10 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cruise app</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+<div class="container">
+    <div th:replace="../static/topnav :: navbar">
+    </div>
+    <div class="inBody">
+        <div class="contentoftable">
+            <table class="cruiselist">
+                <thead>
+                </thead>
+                <tbody>
+                <tr>
+                    <td> infected pi </td>
+                    <td> healthy unprotected </td>
+                    <td> healthy protected </td>
+                    <td> deaths </td>
+                    <td></td>
+                </tr>
+                <tr th:each="list : ${list}">
+                    <td><span th:text="${list.infectedPi}" > </span></td>
+                    <td><span th:text="${list.healthyunprotectedPv}" > </span></td>
+                    <td><span th:text="${list.deathsPm}"> </span></td>
+                    <td><span th:text="${list.healthyprotectedPr}"> </span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 </body>
 </html>
